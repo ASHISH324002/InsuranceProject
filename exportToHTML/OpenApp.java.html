@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>OpenApp.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#191a1c">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+OpenApp.java</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">microsoft</span><span class="s2">.</span><span class="s1">playwright</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">microsoft</span><span class="s2">.</span><span class="s1">playwright</span><span class="s2">.</span><span class="s1">options</span><span class="s2">.</span><span class="s1">WaitForSelectorState</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">OpenApp </span><span class="s2">{</span>
+    <span class="s0">static </span><span class="s1">Locator username</span><span class="s2">;</span>
+    <span class="s0">static </span><span class="s1">Locator password</span><span class="s2">;</span>
+    <span class="s0">static </span><span class="s1">Locator loginBtn</span><span class="s2">;</span>
+    <span class="s0">static </span><span class="s1">Locator dashboard</span><span class="s2">;</span>
+
+    <span class="s0">public static void </span><span class="s1">enterUsername</span><span class="s2">(</span><span class="s1">String userName</span><span class="s2">) {</span>
+        <span class="s1">username</span><span class="s2">.</span><span class="s1">waitFor</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Locator</span><span class="s2">.</span><span class="s1">WaitForOptions</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">setState</span><span class="s2">(</span><span class="s1">WaitForSelectorState</span><span class="s2">.</span><span class="s1">VISIBLE</span><span class="s2">));</span>
+        <span class="s1">username</span><span class="s2">.</span><span class="s1">fill</span><span class="s2">(</span><span class="s1">userName</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s3">// Enter Password</span>
+    <span class="s0">public static void </span><span class="s1">enterPassword</span><span class="s2">(</span><span class="s1">String passWord</span><span class="s2">) {</span>
+        <span class="s1">password</span><span class="s2">.</span><span class="s1">waitFor</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Locator</span><span class="s2">.</span><span class="s1">WaitForOptions</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">setState</span><span class="s2">(</span><span class="s1">WaitForSelectorState</span><span class="s2">.</span><span class="s1">VISIBLE</span><span class="s2">));</span>
+        <span class="s1">password</span><span class="s2">.</span><span class="s1">fill</span><span class="s2">(</span><span class="s1">passWord</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s3">// Click Login Button</span>
+    <span class="s0">public static void </span><span class="s1">clickLogin</span><span class="s2">() {</span>
+        <span class="s1">loginBtn</span><span class="s2">.</span><span class="s1">waitFor</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Locator</span><span class="s2">.</span><span class="s1">WaitForOptions</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">setState</span><span class="s2">(</span><span class="s1">WaitForSelectorState</span><span class="s2">.</span><span class="s1">VISIBLE</span><span class="s2">));</span>
+        <span class="s1">loginBtn</span><span class="s2">.</span><span class="s1">click</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s3">// Wait for Dashboard</span>
+    <span class="s0">public static void </span><span class="s1">waitForDashboard</span><span class="s2">() {</span>
+        <span class="s1">dashboard</span><span class="s2">.</span><span class="s1">waitFor</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Locator</span><span class="s2">.</span><span class="s1">WaitForOptions</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">setState</span><span class="s2">(</span><span class="s1">WaitForSelectorState</span><span class="s2">.</span><span class="s1">VISIBLE</span><span class="s2">));</span>
+    <span class="s2">}</span>
+    <span class="s0">public static void </span><span class="s1">main</span><span class="s2">(</span><span class="s1">String</span><span class="s2">[] </span><span class="s1">args</span><span class="s2">) {</span>
+
+        <span class="s1">Playwright playwright </span><span class="s2">=  </span><span class="s1">Playwright</span><span class="s2">.</span><span class="s1">create</span><span class="s2">();</span>
+        <span class="s1">Browser browser </span><span class="s2">= </span><span class="s1">playwright</span><span class="s2">.</span><span class="s1">chromium</span><span class="s2">().</span><span class="s1">launch</span><span class="s2">(</span><span class="s0">new </span><span class="s1">BrowserType</span><span class="s2">.</span><span class="s1">LaunchOptions</span><span class="s2">().</span><span class="s1">setHeadless</span><span class="s2">(</span><span class="s0">false</span><span class="s2">));</span>
+        <span class="s1">Page page</span><span class="s2">= </span><span class="s1">browser</span><span class="s2">.</span><span class="s1">newPage</span><span class="s2">();</span>
+        <span class="s1">page</span><span class="s2">.</span><span class="s1">navigate</span><span class="s2">(</span><span class="s4">&quot;http://localhost:3000/login&quot;</span><span class="s2">);</span>
+        <span class="s1">username </span><span class="s2">= </span><span class="s1">page</span><span class="s2">.</span><span class="s1">locator</span><span class="s2">(</span><span class="s4">&quot;input[placeholder='Username']&quot;</span><span class="s2">);</span>
+        <span class="s1">password </span><span class="s2">= </span><span class="s1">page</span><span class="s2">.</span><span class="s1">locator</span><span class="s2">(</span><span class="s4">&quot;input[placeholder='Password']&quot;</span><span class="s2">);</span>
+        <span class="s1">loginBtn </span><span class="s2">= </span><span class="s1">page</span><span class="s2">.</span><span class="s1">locator</span><span class="s2">(</span><span class="s4">&quot;button[type='submit']:has-text('Log in')&quot;</span><span class="s2">);</span>
+        <span class="s1">dashboard </span><span class="s2">= </span><span class="s1">page</span><span class="s2">.</span><span class="s1">locator</span><span class="s2">(</span><span class="s4">&quot;text=Dashboard&quot;</span><span class="s2">);</span>
+        <span class="s1">enterUsername</span><span class="s2">(</span><span class="s4">&quot;krishnap&quot;</span><span class="s2">);</span>
+        <span class="s1">enterPassword</span><span class="s2">(</span><span class="s4">&quot;manager&quot;</span><span class="s2">);</span>
+        <span class="s1">clickLogin</span><span class="s2">();</span>
+
+        <span class="s3">// Verify login success</span>
+        <span class="s1">waitForDashboard</span><span class="s2">();</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;Login successful!&quot;</span><span class="s2">);</span>
+        <span class="s1">page</span><span class="s2">.</span><span class="s1">close</span><span class="s2">();</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+
+
+
+
+</pre>
+</body>
+</html>
