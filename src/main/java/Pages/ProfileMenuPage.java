@@ -3,8 +3,9 @@ package Pages;
 import Base.BaseTest;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+
 public class ProfileMenuPage extends  BaseTest {
     // -------------------------
 
@@ -35,6 +36,10 @@ public class ProfileMenuPage extends  BaseTest {
 
         profileIcon = page.locator("(//div[@class='relative'])[2]");
 
+        /*profileIcon = page.getByText("KP",
+                new Page.GetByTextOptions().setExact(true)
+        );*/
+        //profileIcon = page.locator("xpath=//*[text()='KP']");
         yourProfileLink = page.getByRole(com.microsoft.playwright.options.AriaRole.LINK,
                 new Page.GetByRoleOptions().setName("Your Profile"));
 
@@ -66,7 +71,7 @@ public class ProfileMenuPage extends  BaseTest {
     }
 
     public void assertProfileIconPresent() {
-        assertTrue(isProfileIconPresent(), "Profile icon is not visible");
+        assertThat(profileIcon).isVisible();
     }
 
     public void clickProfileIcon() {
